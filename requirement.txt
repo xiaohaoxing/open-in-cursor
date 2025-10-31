@@ -1,0 +1,14 @@
+名称：cursor 插件安装
+
+项目类型：浏览器插件
+
+核心功能：浏览 vscode 的插件市场时在“添加到 vscode”按钮之外增加添加到指定编辑器的跳转按钮。
+
+功能描述：VScode 是开源的代码编辑器，因此有很多其他的 AI 编程工具都基于 VScode 进行了二次开发，插件生态自然也是通用的。但是浏览器上浏览 VScode 的插件市场时不支持直接跳转到指定的编辑器，而是统一都是跳转到 VScode，链接 schema url 是类似于："vscode:extension/SonarSource.sonarlint-vscode"，而 cursor 的编辑器的 url schema 是 “cursor:extension/SonarSource.sonarlint-vscode”，因此只需要将跳转链接进行编辑即可支持其他的代码编辑器。
+
+技术架构：使用通用的 WXT 框架开发，并且将 url schema 的转换逻辑单独独立出来，方便未来支持更多的 schema。在点击插件时弹出选项框，在列表中选择特定的类型编辑器，在打开插件的主页时在 install 按钮上增加一个下拉列表，从中选取用户勾选的打开方式。
+项目根路径下提供了一个插件主页的 html 代码，install 按钮的代码在 1392 行，对 install 按钮进行修改，支持一个下拉列表选择打开方式。
+
+支持模式：当前支持 cursor、qoder 的 schema。
+
+样式：页面上元素替换尽可能符合原始网页风格。弹出层使用基本的 tailwind 的样式表即可。
